@@ -75,7 +75,7 @@
 									<a href={% url 'article' article.pk %} >{{ article.title }}</a>
 								</h1>
 								<div class="entry-meta">
-                                    <span class="post-category"><a href="#">{{ article.category }}</a></span>
+                                    <span class="post-category"><a href="/category/{{ article.category_id }}">{{ article.category }}</a></span>
 
 									<span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">{{ article.create_at }}</time></a></span>
 
@@ -100,7 +100,9 @@
 							<ul>
                                  {% for rencent_list in recent_lists %}
 								<li>
-									<a href="/article/{{ rencent_list.pk }}">{{ rencent_list.title }}</a>
+                                    <a href={% url 'article' rencent_list.pk %}>{{ rencent_list.title }}</a>
+
+{#									<a href="/article/{{ rencent_list.pk }}">{{ rencent_list.title }}</a>#}
 								</li>
 								{% endfor %}
 							</ul>
@@ -125,8 +127,7 @@
 							<ul>
 							 {% for category in category_lists %}
 								<li>
-                                    <a href=''>{{ category.name }}</a>
-{#									<a href={% url 'category' category.alias %}>{{ category.name }}</a>#}
+                                    <a href="/category/{{ category.pk }}">{{ category.name }}</a>
 								</li>
                              {% endfor %}
 							</ul>

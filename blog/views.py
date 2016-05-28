@@ -1,9 +1,11 @@
 # -*- coding:utf-8 -*-
 from django.shortcuts import render
 from .models import Article, Category
-
-
+from json_response import JsonResponse, LazableJSONEncoder
+import json
 # Create your views here.
+
+
 def get_category():
     category_lists = Category.objects.all()
     category_lists = [category_list.data for category_list in category_lists]
@@ -55,16 +57,16 @@ def article(request, pk):
     return render(request, 'article.html', data)
 
 
-def category_article(request, category_name):
-    article_lists = Article.objects.all().filter(category=category_name)
+def category(request, category_id):
+    article_lists = Article.objects.all().filter(category_id=category_id)
     article_lists = [article_list.data for article_list in article_lists]
 
     data = {
-        'article': article_lists,
+        'article_lists': article_lists,
         'recent_lists': RECENT_LISTS,
         'category_lists': CATEGORY,
     }
-    return render(request, 'category.html', data)
+    return render(request, 'home.html', data)
 
 
 def about(request):

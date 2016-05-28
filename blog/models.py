@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from django.db import models
+
 # Create your models here.
 
 
@@ -18,6 +19,8 @@ class Category(models.Model):
     @property
     def data(self):
         return {
+            'pk': self.pk,
+
             'name': self.name,
             'alias': self.alias
         }
@@ -47,6 +50,7 @@ class Article(models.Model):
             'pk': self.pk,
             'abstract': self.abstract,
             'category': self.category,
+            'category_id': self.category_id,
             'content': self.content,
             'create_at': self.create_at,
             'tags': self.tags,

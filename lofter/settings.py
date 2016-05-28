@@ -20,7 +20,7 @@ PROJ_DIR = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'yta1$a_@xdfg)-2#tm-o!5r9i518g8as92#cwjj9^pzwpptvmc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = False
 

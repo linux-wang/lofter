@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
-from blog.views import home, article, blog, about, contact, test, category_article
+from blog.views import home, article, blog, about, contact, test, category
 
 from settings import STATIC_PATH
 admin.autodiscover()
@@ -22,8 +22,9 @@ urlpatterns = patterns('',
     url(r'^contact$', contact, name='contact'),
     url(r'^about$', about, name='about'),
 
-    # url(r'^category/(?P<category_name>[a-z]+)/$', category_article, name='category'),
+    url(r'^category/(?P<category_id>[0-9]+)/$', category, name='category'),
 
+    # url(r'^category$', category, name='category'),
     # url(r'^message_board$', views.message_board, name='message board'),
     # url(r'^api/message_submit$', views.message_submit, name='message_submit'),
 
