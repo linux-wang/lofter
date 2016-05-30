@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 """
 Django settings for lofter project.
 
@@ -20,7 +21,7 @@ PROJ_DIR = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'yta1$a_@xdfg)-2#tm-o!5r9i518g8as92#cwjj9^pzwpptvmc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = False
 
@@ -59,9 +60,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
     'pagedown',
     'markdown',
+    'haystack',
+    'blog',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -121,3 +123,18 @@ STATICFILES_DIRS = (
 # CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 
 STATIC_PATH = os.path.join(os.path.dirname(__file__), '../static').replace('\\', '/')
+
+
+# search engine
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'blog.whoosh_cn_backend.WhooshEngine',   # 需要注意的地方，blog这里是你自己的应用名称
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+# 自动更新索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+# 注意的地方
+# article_text.txt中写的是你models里可以查询的数据 ，我定义了content那么这里也要写content，而不是search_indexes.py中的
+# 现在也没有写对应的 search_views，是默认的
