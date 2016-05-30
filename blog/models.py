@@ -40,6 +40,8 @@ class Article(models.Model):
     tags = models.CharField('tags', null=True, max_length=30, help_text='tags')
     category = models.ForeignKey(Category, help_text=u'分类')
 
+    status = models.BooleanField(default=True)
+
     def __unicode__(self):
         return self.title
 

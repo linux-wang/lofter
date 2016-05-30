@@ -14,7 +14,7 @@ def get_category():
 
 
 def get_recent_lists():
-    recent_lists = Article.objects.all().order_by('-create_at')[0:5]
+    recent_lists = Article.objects.all().filter(status=True).order_by('-create_at')[0:5]
     recent_lists = [recent_list.data for recent_list in recent_lists]
 
     return recent_lists
@@ -25,7 +25,7 @@ RECENT_LISTS = get_recent_lists()
 
 
 def home(request):
-    article_lists = Article.objects.all().order_by('-create_at')
+    article_lists = Article.objects.all().filter(status=True).order_by('-create_at')
     article_lists = [article_list.data for article_list in article_lists]
 
     data = {
@@ -37,7 +37,7 @@ def home(request):
 
 
 def blog(request):
-    article_lists = Article.objects.all().order_by('-create_at')
+    article_lists = Article.objects.all().filter(status=True).order_by('-create_at')
     article_lists = [article_list.data for article_list in article_lists]
 
     data = {
@@ -58,7 +58,7 @@ def article(request, pk):
 
 
 def category(request, category_id):
-    article_lists = Article.objects.all().filter(category_id=category_id)
+    article_lists = Article.objects.all().filter(status=True, category_id=category_id)
     article_lists = [article_list.data for article_list in article_lists]
 
     data = {
