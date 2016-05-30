@@ -69,6 +69,15 @@ def category(request, category_id):
     return render(request, 'home.html', data)
 
 
+# def search(request):
+#     text = SearchForm(request.GET.get())
+#     results = text.search()
+#     # results = [results.data for result in results]
+#     return render(request, 'search/search.html', {
+#         'results': results,
+#     })
+
+
 def about(request):
     return render(request, 'about.html', {})
 

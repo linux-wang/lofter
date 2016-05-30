@@ -1,7 +1,8 @@
 from django.conf.urls import patterns, include, url
-
 from django.contrib import admin
+
 from blog.views import home, article, blog, about, contact, test, category
+import haystack
 
 from settings import STATIC_PATH
 admin.autodiscover()
@@ -22,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^contact$', contact, name='contact'),
     url(r'^about$', about, name='about'),
 
+    url(r'^search/', include('haystack.urls'), name='search'),
     url(r'^category/(?P<category_id>[0-9]+)/$', category, name='category'),
 
     # url(r'^category$', category, name='category'),
