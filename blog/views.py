@@ -1,8 +1,12 @@
 # -*- coding:utf-8 -*-
-from django.shortcuts import render
-from .models import Article, Category
-from json_response import JsonResponse, LazableJSONEncoder
 import json
+
+from django.shortcuts import render
+from json_response import JsonResponse, LazableJSONEncoder
+
+from .models import Article, Category
+
+
 # Create your views here.
 
 

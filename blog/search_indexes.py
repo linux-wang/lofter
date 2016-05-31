@@ -1,6 +1,9 @@
 import datetime
+
 from haystack import indexes
+
 from models import Article
+
 
 class ArticleIndex(indexes.SearchIndex, indexes.Indexable):
     title = indexes.CharField(use_template=True)

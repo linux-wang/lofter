@@ -1,6 +1,7 @@
 # encoding: utf-8
 
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals)
 
 import os
 import re
@@ -12,17 +13,29 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils import six
 from django.utils.datetime_safe import datetime
-
-from haystack.backends import BaseEngine, BaseSearchBackend, BaseSearchQuery, EmptyResults, log_query
+from haystack.backends import (BaseEngine, BaseSearchBackend, BaseSearchQuery,
+                               EmptyResults, log_query)
 from haystack.constants import DJANGO_CT, DJANGO_ID, ID
-from haystack.exceptions import MissingDependency, SearchBackendError, SkipDocument
+from haystack.exceptions import (MissingDependency, SearchBackendError,
+                                 SkipDocument)
 from haystack.inputs import Clean, Exact, PythonData, Raw
 from haystack.models import SearchResult
 from haystack.utils import log as logging
 from haystack.utils import get_identifier, get_model_ct
 from haystack.utils.app_loading import haystack_get_model
-
 from jieba.analyse import ChineseAnalyzer
+# Bubble up the correct error.
+from whoosh import index
+from whoosh.analysis import StemmingAnalyzer
+from whoosh.fields import ID as WHOOSH_ID
+from whoosh.fields import (BOOLEAN, DATETIME, IDLIST, KEYWORD, NGRAM,
+                           NGRAMWORDS, NUMERIC, TEXT, Schema)
+from whoosh.filedb.filestore import FileStorage, RamStorage
+from whoosh.highlight import highlight as whoosh_highlight
+from whoosh.highlight import ContextFragmenter, HtmlFormatter
+from whoosh.qparser import QueryParser
+from whoosh.searching import ResultsPage
+from whoosh.writing import AsyncWriter
 
 try:
     import json
@@ -46,17 +59,6 @@ except ImportError:
 if not hasattr(whoosh, '__version__') or whoosh.__version__ < (2, 5, 0):
     raise MissingDependency("The 'whoosh' backend requires version 2.5.0 or greater.")
 
-# Bubble up the correct error.
-from whoosh import index
-from whoosh.analysis import StemmingAnalyzer
-from whoosh.fields import ID as WHOOSH_ID
-from whoosh.fields import BOOLEAN, DATETIME, IDLIST, KEYWORD, NGRAM, NGRAMWORDS, NUMERIC, Schema, TEXT
-from whoosh.filedb.filestore import FileStorage, RamStorage
-from whoosh.highlight import highlight as whoosh_highlight
-from whoosh.highlight import ContextFragmenter, HtmlFormatter
-from whoosh.qparser import QueryParser
-from whoosh.searching import ResultsPage
-from whoosh.writing import AsyncWriter
 
 
 DATETIME_REGEX = re.compile('^(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})T(?P<hour>\d{2}):(?P<minute>\d{2}):(?P<second>\d{2})(\.\d{3,6}Z?)?$')

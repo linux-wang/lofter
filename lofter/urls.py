@@ -1,10 +1,10 @@
-from django.conf.urls import patterns, include, url
+import haystack
+from django.conf.urls import include, patterns, url
 from django.contrib import admin
 
-from blog.views import home, article, blog, about, contact, test, category
-import haystack
-
+from blog.views import about, article, blog, category, contact, home, test
 from settings import STATIC_PATH
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
