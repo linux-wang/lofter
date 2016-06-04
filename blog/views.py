@@ -2,7 +2,6 @@
 import json
 
 from django.shortcuts import render
-from json_response import JsonResponse, LazableJSONEncoder
 
 from .models import Article, Category
 

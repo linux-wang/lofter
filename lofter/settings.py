@@ -65,12 +65,14 @@ INSTALLED_APPS = (
     'markdown',
     'haystack',
     'blog',
+    'pagination',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'pagination.middleware.PaginationMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -139,3 +141,12 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 # 注意的地方
 # article_text.txt中写的是你models里可以查询的数据 ，我定义了content那么这里也要写content，而不是search_indexes.py中的
 # 现在也没有写对应的 search_views，是默认的
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    # 'django.core.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.request',
+)
