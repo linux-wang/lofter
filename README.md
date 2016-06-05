@@ -1,5 +1,5 @@
 #### lofter
-another blog system based django
+another blog system based django and bootstrap
 
 #### status
 dev
@@ -13,3 +13,5 @@ pip install -r requirements
 3. sqlite3
 4. virtualenv
 
+#### orz
+前端界面是直接找的bootstrap模版
