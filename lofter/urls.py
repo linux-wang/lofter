@@ -2,7 +2,7 @@ import haystack
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
 
-from blog.views import about, article, blog, category, contact, home, test
+from blog.views import about, article, blog, category, contact, home, test, ArticleMonthArchiveView
 from settings import STATIC_PATH
 
 admin.autodiscover()
@@ -25,6 +25,10 @@ urlpatterns = patterns('',
 
     url(r'^search/', include('haystack.urls'), name='search'),
     url(r'^category/(?P<category_id>[0-9]+)/$', category, name='category'),
+
+    url(r'^(?P<year>[0-9]{4})/(?P<month>[0-9]+)/$',
+        ArticleMonthArchiveView.as_view(month_format='%m'),
+        name="archive_month_numeric"),
 
     # url(r'^category$', category, name='category'),
     # url(r'^message_board$', views.message_board, name='message board'),

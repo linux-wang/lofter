@@ -2,7 +2,7 @@
 import json
 
 from django.shortcuts import render
-
+from django.views.generic.dates import MonthArchiveView
 from .models import Article, Category
 
 
@@ -79,6 +79,13 @@ def category(request, category_id):
 #     return render(request, 'search/search.html', {
 #         'results': results,
 #     })
+
+
+class ArticleMonthArchiveView(MonthArchiveView):
+    queryset = Article.objects.all()
+    date_field = 'create_at'
+    allow_future = True
+    template_name = 'article_archive_month.html'
 
 
 def about(request):
