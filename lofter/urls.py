@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     url(r'^search/', include('haystack.urls'), name='search'),
     url(r'^category/(?P<category_id>[0-9]+)/$', category, name='category'),
 
-    url(r'^(?P<year>[0-9]{4})/(?P<month>[0-9]+)/$',
+    url(r'^archive/(?P<year>[0-9]{4})/(?P<month>[0-9]+)/$',
         ArticleMonthArchiveView.as_view(month_format='%m'),
         name="archive_month_numeric"),
 

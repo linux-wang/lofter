@@ -7,6 +7,12 @@ from .models import Article, Category
 
 
 # Create your views here.
+def get_archive():
+    articles = Article.objects.all()
+    year_month = set()
+    for _article in articles:
+        year_month.add((_article.create_at.year, _article.create_at.month))
+    return year_month
 
 
 def get_category():
@@ -23,6 +29,7 @@ def get_recent_lists():
     return recent_lists
 
 
+ARCHIVE = get_archive()
 CATEGORY = get_category()
 RECENT_LISTS = get_recent_lists()
 
@@ -35,6 +42,7 @@ def home(request):
         'article_lists': article_lists,
         'recent_lists': RECENT_LISTS,
         'category_lists': CATEGORY,
+        'archive_lists': ARCHIVE,
     }
     return render(request, 'home.html', data)
 
