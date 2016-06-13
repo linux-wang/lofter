@@ -95,6 +95,12 @@ class ArticleMonthArchiveView(MonthArchiveView):
     allow_future = True
     template_name = 'article_archive_month.html'
 
+    def get_context_data(self, **kwargs):
+        kwargs['recent_lists'] = RECENT_LISTS
+        kwargs['category_lists'] = CATEGORY
+        kwargs['archive_lists'] = ARCHIVE
+        return super(MonthArchiveView, self).get_context_data(**kwargs)
+
 
 def about(request):
     return render(request, 'about.html', {})
