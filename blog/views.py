@@ -58,10 +58,10 @@ def blog(request):
 
 
 def article(request, pk):
-    article = Article.objects.get(pk=pk).data
+    _article = Article.objects.get(pk=pk).data
 
     data = {
-        'article': article,
+        'article': _article,
         'recent_lists': RECENT_LISTS,
         'category_lists': CATEGORY,
     }
