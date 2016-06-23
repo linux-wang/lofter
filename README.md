@@ -2,7 +2,8 @@
 another blog system based django and bootstrap
 
 #### status
-dev
+dev~
+add duoshuo based [jikexueyuan](http://wiki.jikexueyuan.com/project/django-set-up-blog/markdown.html)
 
 #### requirements
 pip install -r requirements
