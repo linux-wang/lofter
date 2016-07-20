@@ -1,5 +1,5 @@
 #### lofter
-another blog system based django and bootstrap
+another blog system based Django and Bootstrap
 
 #### status
 dev~
