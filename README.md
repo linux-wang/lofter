@@ -1,12 +1,21 @@
 #### lofter
 another blog system based Django and Bootstrap
 
+#### features
+1. 支持搜索功能
+2. 支持markdown语法，后端编辑页面可直接预览
+3. 包含了多说评论
+4. 有归档，标签等功能
+
 #### status
 dev~
 add duoshuo based [jikexueyuan](http://wiki.jikexueyuan.com/project/django-set-up-blog/markdown.html)
 
 #### requirements
 pip install -r requirements
+
+#### run
+python manage.py runserver xxxx:xxxx
 
 #### sys environment
 1. python 2.7
